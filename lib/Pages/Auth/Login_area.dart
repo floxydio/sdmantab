@@ -12,9 +12,9 @@ class LoginArea extends StatefulWidget {
 class _LoginAreaState extends State<LoginArea> {
   var username = "";
   var password = "";
+  bool index = false;
   @override
   Widget build(BuildContext context) {
-    var loadingDulu = false;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -47,10 +47,20 @@ class _LoginAreaState extends State<LoginArea> {
             ),
           ),
           SizedBox(height: 20),
+          Switch(
+              value: index,
+              onChanged: (value) {
+                setState(() {
+                  index = value;
+                });
+              }),
           ElevatedButton(
               onPressed: () {
-                Provider.of<LoginProvider>(context, listen: false)
-                    .loginGuru(username, password, context);
+                index == false
+                    ? Provider.of<LoginProvider>(context, listen: false)
+                        .loginGuru(username, password, context)
+                    : Provider.of<LoginProvider>(context, listen: false)
+                        .loginKepsek(username, password, context);
               },
               child: Text("Login"))
         ],

@@ -5,16 +5,14 @@ import 'package:sdmantabfront/Services/Auth_services.dart';
 
 class LoginProvider with ChangeNotifier {
   // Buat Login
-
   bool loadingDulu = false;
   void loginGuru(uname, pw, BuildContext context) async {
-    print(uname);
-    print(pw);
     loadingDulu = false;
-    await AuthRepository().loginGuru(uname, pw).then((value) => {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => GuruScreen()))
-        });
+    var responLogin = await AuthRepository().loginGuru(uname, pw);
+    if (responLogin["status"] == 200) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => GuruScreen()));
+    }
     loadingDulu = true;
     notifyListeners();
   }

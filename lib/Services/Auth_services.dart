@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as web;
 import 'package:sdmantabfront/Constant/Server_const.dart';
 
@@ -11,7 +13,8 @@ class AuthRepository {
         print("<--- Respon Login Guru");
         print(response.body);
         print("Close --->");
-        return response.body;
+        var resbody = jsonDecode(response.body);
+        return resbody;
       }
     } catch (e) {
       throw Exception(e);

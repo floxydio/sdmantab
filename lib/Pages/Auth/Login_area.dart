@@ -10,10 +10,10 @@ class LoginArea extends StatefulWidget {
 }
 
 class _LoginAreaState extends State<LoginArea> {
+  var username = "";
+  var password = "";
   @override
   Widget build(BuildContext context) {
-    var username = "";
-    var password = "";
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -36,8 +36,7 @@ class _LoginAreaState extends State<LoginArea> {
               ElevatedButton(
                   onPressed: () {
                     Provider.of<LoginProvider>(context, listen: false)
-                        .loginGuru(
-                            username, password, context);
+                        .loginGuru(username, password, context);
                   },
                   child: Text("Login"))
             ],

@@ -29,7 +29,8 @@ class AuthRepository {
         print("<--- Respon Login Kepsek");
         print(response.body);
         print("Close --->");
-        return response.body;
+        var resbody = jsonDecode(response.body);
+        return resbody;
       }
     } catch (e) {
       throw Exception(e);
@@ -38,3 +39,13 @@ class AuthRepository {
 
   
 }
+
+
+
+
+
+
+
+
+
+

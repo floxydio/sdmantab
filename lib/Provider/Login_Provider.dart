@@ -9,7 +9,13 @@ class LoginProvider with ChangeNotifier {
   void loginGuru(uname, pw, BuildContext context) async {
     loadingDulu = false;
     var responLogin = await AuthRepository().loginGuru(uname, pw);
-    if (responLogin["status"] == 200) {
+    if (responLogin["status"] != 200) {
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+                content: Text(responLogin["message"]),
+              ));
+    } else if (responLogin["status"] == 200) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (_) => GuruScreen()));
     }
@@ -18,7 +24,6 @@ class LoginProvider with ChangeNotifier {
   }
 
   // Buat Login Kepsek
-
   void loginKepsek(uname, pw, BuildContext context) async {
     loadingDulu = false;
     await AuthRepository().loginKepsek(uname, pw).then((value) => {

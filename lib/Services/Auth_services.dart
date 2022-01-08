@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as web;
 import 'package:sdmantabfront/Constant/Server_const.dart';
 
@@ -36,4 +35,6 @@ class AuthRepository {
       throw Exception(e);
     }
   }
+
+  
 }
